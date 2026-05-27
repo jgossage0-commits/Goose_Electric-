@@ -72,14 +72,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Goose Electric — Residential Electrician in Dundalk & Baltimore County" },
+      {
+        name: "description",
+        content:
+          "Local family-built residential electrical service in Dundalk and Baltimore County. Outlets, fixtures, ceiling fans, troubleshooting and more. Request a callback today.",
+      },
+      { name: "author", content: "Goose Electric" },
+      { property: "og:title", content: "Goose Electric — Local Residential Electrician" },
+      {
+        property: "og:description",
+        content: "Dependable residential electrical help for homeowners in Dundalk and surrounding Baltimore County communities.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
