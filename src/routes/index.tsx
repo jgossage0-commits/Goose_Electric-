@@ -17,12 +17,11 @@ import {
   ShieldCheck,
   Users,
   MessageSquare,
-  HandshakeIcon,
+  Handshake,
   Check,
   Phone,
   Facebook,
   Instagram,
-  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
