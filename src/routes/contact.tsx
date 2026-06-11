@@ -67,23 +67,37 @@ function CallbackForm() {
     return Object.keys(e).length === 0;
   }
 
-  function onSubmit(ev: React.FormEvent) {
+  async function onSubmit(ev: React.FormEvent) {
     ev.preventDefault();
     if (!validate()) return;
 
-    const subject = `Goose Electric callback request from ${form.name.trim()}`;
-    const body = [
-      `Name: ${form.name.trim()}`,
-      `Phone: ${form.phone.trim()}`,
-      form.email ? `Email: ${form.email.trim()}` : "Email: not provided",
-      form.city ? `City / neighborhood: ${form.city.trim()}` : "City / neighborhood: not provided",
-      `Need help with: ${form.need.trim()}`,
-      `Preferred contact: ${form.contact}`,
-      form.details ? `Details: ${form.details.trim()}` : "Details: none provided",
-    ].join("\n");
+    try {
+      const response = await fetch("https://formspree.io/f/xqejnaej", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          email: form.email.trim() || "not provided",
+          city: form.city.trim() || "not provided",
+          need: form.need.trim(),
+          contact: form.contact,
+          details: form.details.trim() || "none provided",
+        }),
+      });
 
-    window.location.href = `mailto:${businessContact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error("Form submission failed:", response.statusText);
+        alert("There was an issue submitting the form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("There was an issue submitting the form. Please try again.");
+    }
   }
 
   return (
