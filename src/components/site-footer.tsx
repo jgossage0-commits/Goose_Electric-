@@ -3,6 +3,11 @@ import { Facebook, Instagram, Phone, Mail, MapPin, Zap } from "lucide-react";
 import { businessContact, navLinks } from "@/lib/site-data";
 import logo from "@/assets/goose-logo.jpeg";
 
+const socialLinks = [
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61590668703927" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/gooseelectricmd" },
+];
+
 export function SiteFooter() {
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -19,11 +24,13 @@ export function SiteFooter() {
               Local family-built residential electrical service for homeowners across Dundalk and Baltimore County.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {[Facebook, Instagram].map((Icon, i) => (
+              {socialLinks.map(({ Icon, label, href }, i) => (
                 <a
                   key={i}
-                  href="#"
-                  aria-label="Social link"
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
                   className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white transition hover:border-secondary hover:bg-secondary hover:text-secondary-foreground"
                 >
                   <Icon className="h-4 w-4" />
